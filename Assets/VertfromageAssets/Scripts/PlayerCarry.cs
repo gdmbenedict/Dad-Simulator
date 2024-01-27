@@ -11,10 +11,12 @@ public class PlayerCarry : MonoBehaviour
 
 
     // Shaking variables
-    public float shakeThreshold = 1.0f; // The threshold of shake intensity to detach the child
-    public float shakeDuration = 2.0f; // Duration within which the player needs to shake
-    private float shakeStartTime;
+    public int shakeCountRequired = 10; // Number of back-and-forth shakes required
+    public float shakeThreshold = 0.5f; // Minimum movement threshold for a shake
+    private int shakeCount = 0;
     private bool isShaking = false;
+    private float lastMouseX;
+    private bool lastDirection; // false = left, true = right
 
     public bool isCarryingSomething = false;
 
@@ -23,6 +25,10 @@ public class PlayerCarry : MonoBehaviour
     public string garbageTag = "GarbageBag";
     public string childTag = "Child";
 
+    // Carry Positions
+    public Vector3 laundryCarryPos = new Vector3(0, 0.5f, 0.5f);
+    public Vector3 garbageCarryPos = new Vector3(0.5f, 0.5f, 0.5f);
+    public Vector3 childCarryPos = new Vector3(0, 0.5f, 0.5f);
 
     private float originalYPositionObj;
 
@@ -34,12 +40,40 @@ public class PlayerCarry : MonoBehaviour
         {
             throwObject();
         }
+       
+        // Logic to detatch child with mouse movements
+        if (isCarryingSomething && carriedObject.tag==childTag)
+        {
+            
+            if (!isShaking)
+            {
+                Debug.Log("shaking on!");
+                StartShaking();
+            }
+
+            ProcessShake();
+
+            if (shakeCount >= shakeCountRequired)
+            {
+                // Successfully shaken off
+                isShaking = false;
+                shakeCount = 0;
+                shakeItOff(); // Implement this function based on your game's logic
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isCarryingSomething && other.CompareTag(childTag))
+        // If running away child won't reattach
+        if (other.CompareTag(childTag) && !other.GetComponent<ChildScript>().isRunningAway)
         {
+            // If the child attacks you drop what you were carrying
+            if (isCarryingSomething)
+            {
+                throwObject();
+            }
+
             other.GetComponent<ChildScript>().AttachToPlayer();
             carry(other);
             
@@ -76,13 +110,18 @@ public class PlayerCarry : MonoBehaviour
         //           carryPosition = handPosition;
         //       }
 
+        if(other.tag == childTag)
+        {
+            carryPosition = childCarryPos;
+        }
         // Adjust the position relative to the player
         if (other.tag == laundryTag)
         {
-            carryPosition = new Vector3(0, 0.5f, 0.5f);
-        }else if(other.tag == garbageTag)
+            carryPosition = laundryCarryPos;
+        } 
+        if(other.tag == garbageTag)
         {
-            carryPosition = new Vector3(0.5f, 0.5f, 0.5f);
+            carryPosition = garbageCarryPos;
         }
         other.transform.localPosition = carryPosition;
     }
@@ -140,5 +179,27 @@ public class PlayerCarry : MonoBehaviour
         // empty variables
         carriedObject = null;
         isCarryingSomething = false;
+    }
+
+    void StartShaking()
+    {
+        isShaking = true;
+        lastMouseX = Input.mousePosition.x;
+        lastDirection = Input.mousePosition.x >= Screen.width / 2; // Initial direction based on screen center
+    }
+
+    void ProcessShake()
+    {
+        float currentMouseX = Input.mousePosition.x;
+        bool currentDirection = currentMouseX >= lastMouseX;
+
+        if (currentDirection != lastDirection && Mathf.Abs(currentMouseX - lastMouseX) > shakeThreshold)
+        {
+            Debug.Log("Shake " + shakeCount);
+            shakeCount++;
+            lastDirection = currentDirection;
+        }
+
+        lastMouseX = currentMouseX;
     }
 }

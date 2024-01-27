@@ -13,9 +13,10 @@ public class ChildScript : MonoBehaviour
 
     // Private vars
     private bool isAttached = false; // Tracks whether the child is attached to the player
-    private bool isRunningAway = false; // checks if the child has been shaken off
+    public bool isRunningAway = false; // checks if the child has been shaken off
     private Vector3 originalPosition;
-    
+    public float stopThreshold = 0.1f; // Threshold distance to stop moving and rotating
+
     // Sound
     public AudioClip attachmentSound; // The sound clip to play when attached
     private AudioSource audioSource; // The AudioSource component
@@ -38,13 +39,20 @@ public class ChildScript : MonoBehaviour
 
         if (isRunningAway)
         {
-            // Move the child towards the start point
-            Vector3 directionToOrigin = (originalPosition - transform.position).normalized;
-            transform.position += directionToOrigin * moveSpeed * Time.deltaTime;
+            Debug.Log("Running away!");
+            // Calculate the distance to the original position
+            float distanceToOrigin = Vector3.Distance(transform.position, originalPosition);
 
-            // Rotate the child to face the start point
-            Quaternion lookRotation = Quaternion.LookRotation(directionToOrigin);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+            if (distanceToOrigin > stopThreshold)
+            {
+                // Move the child towards the start point
+                Vector3 directionToOrigin = (originalPosition - transform.position).normalized;
+                transform.position += directionToOrigin * moveSpeed * Time.deltaTime;
+
+                // Rotate the child to face the start point
+                Quaternion lookRotation = Quaternion.LookRotation(directionToOrigin);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+            }
             return;
         }
 
@@ -84,6 +92,7 @@ public class ChildScript : MonoBehaviour
         if (attachmentSound != null)
         {
             audioSource.clip = attachmentSound;
+            audioSource.loop = true;
             audioSource.Play();
         }
     }
@@ -92,6 +101,7 @@ public class ChildScript : MonoBehaviour
     {
         if (audioSource.isPlaying)
         {
+            audioSource.loop = false;
             audioSource.Stop();
         }
     }
