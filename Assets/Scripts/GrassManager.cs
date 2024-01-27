@@ -15,6 +15,8 @@ public class GrassManager : MonoBehaviour
     {
         // Find and add first grass to list.
         GameObject Grass1 = GameObject.Find("GrassObject"); grassList.Add(Grass1);
+
+        // Instantiate grass.
         for (int i = 1; i < grassCount; i++)
         {
             GameObject newGrassObj = Instantiate(Grass1);

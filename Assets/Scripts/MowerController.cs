@@ -29,8 +29,9 @@ public class MowerController : MonoBehaviour
             transform.Rotate(rot);
 
             // Movement
-            if (move)
+            if (move) // should we move?
             {
+                // Multiply forward by speed and time to get desired distance for this update.
                 Vector3 moveVector = transform.forward * moveSpeed * Time.deltaTime;
                 if (moveValue.y < 0) { moveVector *= -0.5f; } // If we want to reverse, allow that, but make it slow.
                 Vector3 movePos = moveVector + transform.position;
@@ -39,12 +40,12 @@ public class MowerController : MonoBehaviour
         }
     }
 
-    void OnMove(InputValue value)
+    void OnMove(InputValue value) // Get value of move controls to be used for turning/reversing
     {
         moveValue = value.Get<Vector2>();
     }
 
-    void OnActivate(InputValue value)
+    void OnActivate(InputValue value) // Get value of activate to determine if we should move.
     {
         move = Convert.ToBoolean(value.Get<float>());
     }

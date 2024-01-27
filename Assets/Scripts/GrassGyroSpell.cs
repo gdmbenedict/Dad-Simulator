@@ -15,15 +15,10 @@ public class GrassGyroSpell : MonoBehaviour
     List<float> grassTimes = new List<float>(); // Apparently I can't just use a struct list for some reason.
     List<bool> didFling = new List<bool>();
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        // Loop through grass objects to check things and fling them.
         for (int i = 0; i < grassObjs.Count; i++)
         {
             GameObject obj = grassObjs[i];
@@ -46,13 +41,14 @@ public class GrassGyroSpell : MonoBehaviour
                     //Debug.Log(rb.velocity);
                 }
 
+                // if we didn't fling the grass, and we're not supposed to hold it anymore, fling the grass.
                 if ((!(timer < holdTime)) && timer < keepAliveTime && !didFling[i])
                 {
                     rb.isKinematic = false;
                     rb.AddExplosionForce(force, pos - transform.right, explosionRadius);
                 }
 
-                if (timer > keepAliveTime)
+                if (timer > keepAliveTime) // if grass expired, kill it.
                 {
                     grassObjs.Remove(grassObjs[i]);
                     grassTimes.Remove(grassTimes[i]);
