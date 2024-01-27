@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GrassGyroSpell : MonoBehaviour
@@ -15,12 +13,12 @@ public class GrassGyroSpell : MonoBehaviour
     // Backend
     List<GameObject> grassObjs = new List<GameObject>();
     List<float> grassTimes = new List<float>(); // Apparently I can't just use a struct list for some reason.
-    List<bool> didFling = new List<bool> ();
+    List<bool> didFling = new List<bool>();
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -29,7 +27,7 @@ public class GrassGyroSpell : MonoBehaviour
         for (int i = 0; i < grassObjs.Count; i++)
         {
             GameObject obj = grassObjs[i];
-            if(obj != null)
+            if (obj != null)
             {
                 Vector3 pos = obj.transform.position;
                 Rigidbody rb = obj.GetComponent<Rigidbody>();
