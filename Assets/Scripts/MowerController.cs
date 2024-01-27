@@ -13,11 +13,23 @@ public class MowerController : MonoBehaviour
     Rigidbody rb;
     [SerializeField] bool move = true;
 
+    // Player snapping backend
+    GameObject player;
+    GameObject playerAnchor;
+    bool doSnapping = false;
+    Camera playerCam;
+    Camera m_Camera;
 
     void Start()
     {
+        // Find GameObjects.
+        //player = FindPlayer();
+        playerAnchor = GameObject.Find("PlayerAnchor");
+
         // Get component(s)
         rb = GetComponent<Rigidbody>();
+        m_Camera = GameObject.Find("JohnBeerCam").GetComponent<Camera>();
+        playerCam = Camera.main;
     }
 
     void FixedUpdate()
@@ -37,6 +49,17 @@ public class MowerController : MonoBehaviour
                 Vector3 movePos = moveVector + transform.position;
                 rb.MovePosition(movePos);
             }
+
+            if (doSnapping)
+            {
+                // Snap player.
+                SnapPlayer();
+            }
+            else // Use else to unset camera as maincamera.
+            {
+                m_Camera.enabled = false;
+                playerCam.enabled = true;
+            }
         }
     }
 
@@ -45,8 +68,27 @@ public class MowerController : MonoBehaviour
         moveValue = value.Get<Vector2>();
     }
 
-    void OnActivate(InputValue value) // Get value of activate to determine if we should move.
+    void OnActivate(InputValue value) // Get value of activate to determine if we should move, and snap player.
     {
         move = Convert.ToBoolean(value.Get<float>());
+
+        // Also set snapping to true, so player gets snapped to chair.
+        doSnapping = true;
+
+        // Set cameras.
+        playerCam.enabled = false;
+        m_Camera.enabled = true;
+    }
+
+    GameObject FindPlayer() // Use to find player, idk how, so do later.
+    {
+        // Return player so we don't error.
+        return player;
+    }
+
+    void SnapPlayer() // Snap the player to their seat.
+    {
+        player.transform.position = playerAnchor.transform.position;
+        player.transform.rotation = playerAnchor.transform.rotation;
     }
 }
