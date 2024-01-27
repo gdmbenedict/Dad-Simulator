@@ -7,6 +7,8 @@ public class MowerController : MonoBehaviour
     // Movement serialized backend
     [SerializeField] float moveSpeed = 1; // Move speed in m s -1
     [SerializeField] float rotSpeed = 30; // Rot speed in deg s -1
+    [SerializeField] Vector3 dismountOffset = new Vector3(2, 0, 0);
+    [SerializeField] string playerObjName = "You were killed by Shadow Assassin and became a ghost."; // Thats just what was on my clipboard.
 
     // Movement backend things
     Vector2 moveValue;
@@ -41,7 +43,7 @@ public class MowerController : MonoBehaviour
             transform.Rotate(rot);
 
             // Movement
-            if (move) // should we move?
+            if (moveValue.y != 0) // should we move?
             {
                 // Multiply forward by speed and time to get desired distance for this update.
                 Vector3 moveVector = transform.forward * moveSpeed * Time.deltaTime;
@@ -68,27 +70,43 @@ public class MowerController : MonoBehaviour
         moveValue = value.Get<Vector2>();
     }
 
-    void OnActivate(InputValue value) // Get value of activate to determine if we should move, and snap player.
+    void OnDismount(InputValue value) // Unset parent.
     {
         move = Convert.ToBoolean(value.Get<float>());
 
-        // Also set snapping to true, so player gets snapped to chair.
-        doSnapping = true;
+        // Unparent the player and move them.
+        player.transform.parent = null;
+        player.transform.position += dismountOffset;
 
         // Set cameras.
-        playerCam.enabled = false;
-        m_Camera.enabled = true;
+        m_Camera.enabled = false;
+        playerCam.enabled = true;
     }
 
-    GameObject FindPlayer() // Use to find player, idk how, so do later.
+    void Mount() // Responsible for causing player to mount the mower.
     {
-        // Return player so we don't error.
-        return player;
+        // Snap player before parent.
+        SnapPlayer();
+
+        // set player parent to mower.
+        player.transform.parent = gameObject.transform;
+    }
+
+    void FindPlayer() // Use to find player, idk how, so do later.
+    {
+        // Return so we don't error.
+        player = GameObject.Find(playerObjName);
+        return;
     }
 
     void SnapPlayer() // Snap the player to their seat.
     {
         player.transform.position = playerAnchor.transform.position;
         player.transform.rotation = playerAnchor.transform.rotation;
+    }
+
+    private void OnTriggerEnter(Collider other) // check if player, if true, mount.
+    {
+        if(other.gameObject.name == playerObjName) { Mount(); }
     }
 }
