@@ -12,11 +12,7 @@ GameObject:
   - component: {fileID: 9005220659476430821}
   - component: {fileID: 9005220659476430820}
   - component: {fileID: 9018249871969862650}
-<<<<<<< Updated upstream
-  - component: {fileID: 3637590176296236345}
-=======
-  - component: {fileID: 3509694457777383157}
->>>>>>> Stashed changes
+  - component: {fileID: -3983863731125413574}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -132,11 +128,7 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
-<<<<<<< Updated upstream
---- !u!114 &3637590176296236345
-=======
---- !u!114 &3509694457777383157
->>>>>>> Stashed changes
+--- !u!114 &-3983863731125413574
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
