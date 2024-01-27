@@ -402,7 +402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   rotSpeed: 30
-  move: 1
+  move: 0
 --- !u!114 &7939706198855507065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -474,7 +474,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
