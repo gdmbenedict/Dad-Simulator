@@ -29,39 +29,42 @@ public class GrassGyroSpell : MonoBehaviour
         for (int i = 0; i < grassObjs.Count; i++)
         {
             GameObject obj = grassObjs[i];
-            Vector3 pos = obj.transform.position;
-            Rigidbody rb = obj.GetComponent<Rigidbody>();
-            float timer = grassTimes[i];
-
-            timer += Time.deltaTime;
-
-            // If still travel time, drag grass towards center.
-            if(timer < holdTime)
+            if(obj != null)
             {
-                // Figure out how far we're going.
-                float remainingTime = timer - travelTime;
+                Vector3 pos = obj.transform.position;
+                Rigidbody rb = obj.GetComponent<Rigidbody>();
+                float timer = grassTimes[i];
 
-                // Move.
-                rb.MovePosition(Vector3.Lerp(pos, transform.position, remainingTime + 0.1f));
-                Debug.Log(rb.velocity);
+                timer += Time.deltaTime;
+
+                // If still travel time, drag grass towards center.
+                if (timer < holdTime)
+                {
+                    // Figure out how far we're going.
+                    float remainingTime = timer - travelTime;
+
+                    // Move.
+                    rb.MovePosition(Vector3.Lerp(pos, transform.position, remainingTime + 0.1f));
+                    //Debug.Log(rb.velocity);
+                }
+
+                if ((!(timer < holdTime)) && timer < keepAliveTime && !didFling[i])
+                {
+                    rb.isKinematic = false;
+                    rb.AddExplosionForce(force, pos - transform.right, explosionRadius);
+                }
+
+                if (timer > keepAliveTime)
+                {
+                    grassObjs.Remove(grassObjs[i]);
+                    grassTimes.Remove(grassTimes[i]);
+                    didFling.Remove(didFling[i]);
+                    Destroy(obj);
+                }
+
+                // At the end, put the timer back.
+                grassTimes[i] = timer;
             }
-
-            if((!(timer < holdTime)) && timer < keepAliveTime && !didFling[i])
-            {
-                rb.isKinematic = false;
-                rb.AddExplosionForce(force, transform.position, explosionRadius);
-            }
-
-            if (timer > keepAliveTime)
-            {
-                grassObjs.RemoveAt(i);
-                grassTimes.RemoveAt(i);
-                didFling.RemoveAt(i);
-                Destroy(obj);
-            }
-
-            // At the end, put the timer back.
-            grassTimes[i] = timer;
         }
     }
 
