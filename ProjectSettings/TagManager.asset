@@ -8,6 +8,7 @@ TagManager:
   - Hamper
   - Laundry
   - GarbageBag
+  - Child
   layers:
   - Default
   - TransparentFX

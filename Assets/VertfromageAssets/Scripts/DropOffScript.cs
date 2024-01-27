@@ -8,7 +8,7 @@ public class DropOffScript : MonoBehaviour
     public string acceptedItemTag = "";
     private void OnTriggerEnter(Collider other)
     {
-        PlayerCleanUp playerScript = other.GetComponent<PlayerCleanUp>();
+        PlayerCarry playerScript = other.GetComponent<PlayerCarry>();
         if (playerScript != null && playerScript.carriedObject != null && playerScript.carriedObject.tag==acceptedItemTag)
         {
             Destroy(playerScript.carriedObject, delay);
