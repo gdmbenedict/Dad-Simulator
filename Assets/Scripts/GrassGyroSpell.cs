@@ -66,8 +66,10 @@ public class GrassGyroSpell : MonoBehaviour
     {
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
 
-        grassObjs.Add(other.gameObject);
-        grassTimes.Add(0);
-        didFling.Add(false);
+        if(!grassObjs.Contains(other.gameObject)){
+            grassObjs.Add(other.gameObject);
+            grassTimes.Add(0);
+            didFling.Add(false);
+        }
     }
 }
