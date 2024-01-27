@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Timer: 4:14'
+  m_text: If you can read this, timer is either inactive or broked.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -179,6 +179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a39daebd04ac74f8e9c2aef3db4f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 254.91054
+  timer: 300
   active: 1
   loseSceneID: 0
