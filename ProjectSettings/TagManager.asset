@@ -10,6 +10,8 @@ TagManager:
   - GarbageBag
   - Child
   - Hand
+  - Steak
+  - Stove
   layers:
   - Default
   - TransparentFX
