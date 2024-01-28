@@ -34,9 +34,10 @@ public class MenuManager : MonoBehaviour
     //method that starts the game
     public void Play()
     {
-
+        SceneManager.LoadScene("HousePlusMinigames");
     }
 
+    //method that toggles the menu panel to teh credtis menu
     public void Credit()
     {
         mainMenu.SetActive(!mainMenuOpen);
