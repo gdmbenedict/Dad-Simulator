@@ -9,24 +9,24 @@ public class ActivateText : MonoBehaviour
     //public GameObject buttonPrompt;
 
     public TextAsset text;
-    [SerializeField] private TextAsset theText;
-    public TextAsset winText;
+    //[SerializeField] private TextAsset theText;
+    //public TextAsset winText;
 
     public int startLine;
     public int endLine;
     //public int winStartLine;
     //public int winEndLine;
-    public int theTextStartLine;
-    public int theTextEndLine;
+    //public int theTextStartLine;
+    //public int theTextEndLine;
 
-    public TextAsset[] teenTextFiles;
-    public TextAsset[] dadTextFiles;
+    //public TextAsset[] teenTextFiles;
+    //public TextAsset[] dadTextFiles;
 
-    private string[] theTextLines;
+    //private string[] theTextLines;
     public string[] textLines;
-    public string[] winTextLines;
+    //public string[] winTextLines;
 
-    public string fileName = "teenDialog";
+    //public string fileName = "teenDialog";
 
     public TextBoxManager theTextBox;
 
@@ -38,7 +38,7 @@ public class ActivateText : MonoBehaviour
     public bool destroyWhenActivated;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         //buttonPrompt.SetActive(false);
         theTextBox = FindObjectOfType<TextBoxManager>();
@@ -53,10 +53,10 @@ public class ActivateText : MonoBehaviour
             endLine = textLines.Length - 1;
         }
 
-        if (winText != null)
-        {
-            winTextLines = (winText.text.Split('\n'));
-        }
+        //if (winText != null)
+        //{
+        //    winTextLines = (winText.text.Split('\n'));
+        //}
 
         //if (winEndLine == 0)
         //{
@@ -79,11 +79,19 @@ public class ActivateText : MonoBehaviour
                 theTextBox.EnableTextBox();
             }
         }
+        else
+        {
+            //theTextBox.isActive = true;
+            //theTextBox.ReloadScript(text);
+            //theTextBox.currentLine = startLine;
+            //theTextBox.endAtLine = endLine;
+            //theTextBox.EnableTextBox();
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        if (other.name == "OrboExpo2")
+        if (other.tag == "Player")
         {
             //buttonPrompt.SetActive(!theTextBox.isActive);
             if (requireButtonPress)
@@ -93,7 +101,7 @@ public class ActivateText : MonoBehaviour
             }
             else
             {
-                theTextBox.ReloadScript(theText);
+                theTextBox.ReloadScript(text);
                 theTextBox.currentLine = startLine;
                 theTextBox.endAtLine = endLine;
                 theTextBox.EnableTextBox();
@@ -108,33 +116,33 @@ public class ActivateText : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.name == "OrboExpo2")
+        if (other.tag == "Player")
         {
             //buttonPrompt.SetActive(false);
             waitForPress = false;
         }
     }
 
-    public void GetTextFile(TextAsset textFile)
-    {
-        theText = textFile;
-        if (theText != null)
-        {
-            theTextLines = (theText.text.Split('\n'));
-            //Debug.Log(theTextLines);
-        }
-        theTextEndLine = theTextLines.Length - 1;
-        //Debug.Log(theTextLines.Length - 1);
-        theTextBox.isTyping = false;
-        theTextBox.ReloadScript(theText);
-        theTextBox.currentLine = theTextStartLine;
-        theTextBox.endAtLine = theTextEndLine;
-        theTextBox.choice1.gameObject.SetActive(false);
-        theTextBox.choice2.gameObject.SetActive(false);
-        theTextBox.choice1.GetComponent<Button>().onClick.AddListener(delegate { GetTextFile(teenTextFiles[0]); });
-        theTextBox.choice2.GetComponent<Button>().onClick.AddListener(delegate { GetTextFile(teenTextFiles[1]); });
-        theTextBox.EnableTextBox();
-    }
+    //public void GetTextFile(TextAsset textFile)
+    //{
+    //    theText = textFile;
+    //    if (theText != null)
+    //    {
+    //        theTextLines = (theText.text.Split('\n'));
+    //        //Debug.Log(theTextLines);
+    //    }
+    //    theTextEndLine = theTextLines.Length - 1;
+    //    //Debug.Log(theTextLines.Length - 1);
+    //    theTextBox.isTyping = false;
+    //    theTextBox.ReloadScript(theText);
+    //    theTextBox.currentLine = theTextStartLine;
+    //    theTextBox.endAtLine = theTextEndLine;
+    //    //theTextBox.choice1.gameObject.SetActive(false);
+    //    //theTextBox.choice2.gameObject.SetActive(false);
+    //    //theTextBox.choice1.GetComponent<Button>().onClick.AddListener(delegate { GetTextFile(teenTextFiles[0]); });
+    //    //theTextBox.choice2.GetComponent<Button>().onClick.AddListener(delegate { GetTextFile(teenTextFiles[1]); });
+    //    theTextBox.EnableTextBox();
+    //}
 }
 
 //most of this activate text file is made by following the tutorial by gamesplusjames on youtube https://www.youtube.com/watch?v=7KNQYPcx-uU
