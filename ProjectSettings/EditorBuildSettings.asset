@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 486c9a8fb0a52144d9f6807b4618c888
+  - enabled: 1
+    path: Assets/Scenes/HousePlusMinigamesNavMesh.unity
+    guid: 4e81774b013023144b6c76dcdce5885f
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7,
       type: 2}
