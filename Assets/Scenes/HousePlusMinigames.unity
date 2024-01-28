@@ -201,90 +201,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1b60033296123e4c89d656a1bbea293, type: 3}
---- !u!1001 &12691177
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -23.261305
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -18.830608
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.4554666
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.8902529
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 125.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6403193036641617738, guid: 6a5567ea042f5774a936f8dd542d90f7,
-        type: 3}
-      propertyPath: m_Name
-      value: TempLawnMower
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 487940740699985939, guid: 6a5567ea042f5774a936f8dd542d90f7, type: 3}
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6a5567ea042f5774a936f8dd542d90f7, type: 3}
 --- !u!43 &13570126
 Mesh:
   m_ObjectHideFlags: 0
@@ -45211,6 +45127,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1b60033296123e4c89d656a1bbea293, type: 3}
+--- !u!1001 &1256955788
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -24.951973
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -19.284761
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339889544524844168, guid: 6a5567ea042f5774a936f8dd542d90f7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6403193036641617738, guid: 6a5567ea042f5774a936f8dd542d90f7,
+        type: 3}
+      propertyPath: m_Name
+      value: TempLawnMower
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a5567ea042f5774a936f8dd542d90f7, type: 3}
 --- !u!43 &1285206991
 Mesh:
   m_ObjectHideFlags: 0
@@ -80123,7 +80107,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 1
   m_Height: 1
@@ -80193,4 +80177,4 @@ SceneRoots:
   - {fileID: 817143190}
   - {fileID: 1206717658}
   - {fileID: 599187675}
-  - {fileID: 12691177}
+  - {fileID: 1256955788}
