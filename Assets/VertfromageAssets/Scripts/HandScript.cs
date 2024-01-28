@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class HandScript : MonoBehaviour
 {
-    private PlayerCarry playerScript;
+    public PlayerCarry playerScript = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerScript = GetComponent<PlayerCarry>();
+        if (playerScript == null)
+        {
+            Debug.LogError("PlayerCarry script not assigned!");
+        }
     }
 
     // Update is called once per frame
@@ -20,6 +23,15 @@ public class HandScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        playerScript.handleHandTrigger(other, transform);
+        if (other != null)
+        {
+            Debug.Log("Hand Touched " + other.tag);
+            playerScript.handleHandTrigger(other, transform);
+        }
+        else
+        {
+            Debug.Log("Collider is null");
+        }
+        
     }
 }

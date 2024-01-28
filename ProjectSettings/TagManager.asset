@@ -9,6 +9,7 @@ TagManager:
   - Laundry
   - GarbageBag
   - Child
+  - Hand
   layers:
   - Default
   - TransparentFX

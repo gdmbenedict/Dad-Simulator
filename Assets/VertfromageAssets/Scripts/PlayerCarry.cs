@@ -83,6 +83,7 @@ public class PlayerCarry : MonoBehaviour
     
     public void handleHandTrigger(Collider other, Transform where)
     {
+        Debug.Log("Hand Trigger! " + other.tag);
         if (!isCarryingSomething && other.CompareTag(laundryTag))
         {
             carry(other, where);
