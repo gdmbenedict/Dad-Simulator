@@ -7,8 +7,9 @@ public class MowerController : MonoBehaviour
     // Movement serialized backend
     [SerializeField] float moveSpeed = 1; // Move speed in m s -1
     [SerializeField] float rotSpeed = 30; // Rot speed in deg s -1
-    [SerializeField] Vector3 dismountOffset = new Vector3(2, 0, 0);
     [SerializeField] string playerObjName = "Player"; // Thats just what was on my clipboard.
+    [SerializeField] Vector3 dismountOffset = new Vector3(2, 0, 0);
+    [SerializeField] bool allowCameraThings = true;
 
     // Movement backend things
     Vector2 moveValue;
@@ -32,6 +33,9 @@ public class MowerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         m_Camera = GameObject.Find("JohnBeerCam").GetComponent<Camera>();
         playerCam = Camera.main;
+
+        // Double check that camera doesn't do wacky things by making it undo camera things.
+        DoCameraThings(false);
     }
 
     void FixedUpdate()
@@ -68,8 +72,7 @@ public class MowerController : MonoBehaviour
         player.transform.position += dismountOffset;
 
         // Set cameras.
-        m_Camera.enabled = false;
-        playerCam.enabled = true;
+        DoCameraThings(false);
     }
 
     void Mount() // Responsible for causing player to mount the mower.
@@ -79,8 +82,7 @@ public class MowerController : MonoBehaviour
 
         // set player parent to mower.
         player.transform.parent = gameObject.transform;
-        playerCam.enabled = false;
-        m_Camera.enabled = true;
+        DoCameraThings(true);
     }
 
     void FindPlayer() // Use to find player, idk how, so do later.
@@ -102,6 +104,23 @@ public class MowerController : MonoBehaviour
         {
             Mount();
         }
-        //Debug.Log(playerObjName); Debug.Log(player.name);
+        Debug.Log(playerObjName); Debug.Log(player.name); Debug.Log(other.gameObject.name);
+    }
+
+    void DoCameraThings(bool enable)
+    {
+        if (allowCameraThings)
+        {
+            if (enable)
+            {
+                playerCam.enabled = false;
+                m_Camera.enabled = true;
+            }
+            else
+            {
+                playerCam.enabled = true;
+                m_Camera.enabled = false;
+            }
+        }
     }
 }
