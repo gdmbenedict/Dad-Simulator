@@ -8,14 +8,29 @@ public class ActivateText : MonoBehaviour
 {
     public GameObject buttonPrompt;
 
-    public TextAsset theText;
+    public TextAsset text;
+    [SerializeField] private TextAsset theText;
+    public TextAsset winText;
 
     public int startLine;
     public int endLine;
+    public int winStartLine;
+    public int winEndLine;
+    public int theTextStartLine;
+    public int theTextEndLine;
 
+    public TextAsset[] teenTextFiles;
+    public TextAsset[] dadTextFiles;
+
+    private string[] theTextLines;
     public string[] textLines;
+    public string[] winTextLines;
+
+    public string fileName = "teenDialog";
 
     public TextBoxManager theTextBox;
+
+    //public PickupController pickupController;
 
     public bool requireButtonPress;
     private bool waitForPress;
@@ -28,14 +43,24 @@ public class ActivateText : MonoBehaviour
         buttonPrompt.SetActive(false);
         theTextBox = FindObjectOfType<TextBoxManager>();
 
-        if (theText != null)
+        if (text != null)
         {
-            textLines = (theText.text.Split('\n'));
+            textLines = (text.text.Split('\n'));
         }
 
         if (endLine == 0)
         {
             endLine = textLines.Length - 1;
+        }
+
+        if (winText != null)
+        {
+            winTextLines = (winText.text.Split('\n'));
+        }
+
+        if (winEndLine == 0)
+        {
+            winEndLine = winTextLines.Length - 1;
         }
     }
 
@@ -44,25 +69,21 @@ public class ActivateText : MonoBehaviour
     {
         if (waitForPress && Input.GetKeyDown(KeyCode.E))
         {
-            if (!theTextBox.isActive) 
+            if (!theTextBox.isActive)
             {
+                //theTextBox.PlayTalkSound(this);
                 theTextBox.isActive = true;
-                theTextBox.ReloadScript(theText);
+                theTextBox.ReloadScript(text);
                 theTextBox.currentLine = startLine;
                 theTextBox.endAtLine = endLine;
-                theTextBox.EnableTextBox(); 
-            }
-
-            if (destroyWhenActivated)
-            {
-                Destroy(gameObject);
+                theTextBox.EnableTextBox();
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-       if (other.name == "OrboExpo2")
+        if (other.name == "OrboExpo2")
         {
             buttonPrompt.SetActive(!theTextBox.isActive);
             if (requireButtonPress)
@@ -72,12 +93,12 @@ public class ActivateText : MonoBehaviour
             }
             else
             {
-            theTextBox.ReloadScript(theText);
-            theTextBox.currentLine = startLine;
-            theTextBox.endAtLine = endLine;
-            theTextBox.EnableTextBox();
+                theTextBox.ReloadScript(theText);
+                theTextBox.currentLine = startLine;
+                theTextBox.endAtLine = endLine;
+                theTextBox.EnableTextBox();
             }
-            
+
 
             if (destroyWhenActivated)
             {
@@ -92,6 +113,27 @@ public class ActivateText : MonoBehaviour
             buttonPrompt.SetActive(false);
             waitForPress = false;
         }
+    }
+
+    public void GetTextFile(TextAsset textFile)
+    {
+        theText = textFile;
+        if (theText != null)
+        {
+            theTextLines = (theText.text.Split('\n'));
+            //Debug.Log(theTextLines);
+        }
+        theTextEndLine = theTextLines.Length - 1;
+        //Debug.Log(theTextLines.Length - 1);
+        theTextBox.isTyping = false;
+        theTextBox.ReloadScript(theText);
+        theTextBox.currentLine = theTextStartLine;
+        theTextBox.endAtLine = theTextEndLine;
+        theTextBox.choice1.gameObject.SetActive(false);
+        theTextBox.choice2.gameObject.SetActive(false);
+        theTextBox.choice1.GetComponent<Button>().onClick.AddListener(delegate { GetTextFile(teenTextFiles[0]); });
+        theTextBox.choice2.GetComponent<Button>().onClick.AddListener(delegate { GetTextFile(teenTextFiles[1]); });
+        theTextBox.EnableTextBox();
     }
 }
 
