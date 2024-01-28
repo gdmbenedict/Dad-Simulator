@@ -19,7 +19,6 @@ public class ChildScript : MonoBehaviour
 
     // NavMesh
     public UnityEngine.AI.NavMeshAgent agent;
-    private bool isChasingPlayer = false;
 
     // Sound
     public AudioClip attachmentSound; // The sound clip to play when attached
@@ -49,19 +48,14 @@ public class ChildScript : MonoBehaviour
         if (isRunningAway)
         {
             Debug.Log("Running away!");
-            // Calculate the distance to the original position
-            //float distanceToOrigin = Vector3.Distance(transform.position, originalPosition);
 
-            //if (distanceToOrigin > stopThreshold)
-            //{
-            //    // Move the child towards the start point
+            // Might need this...
             //    Vector3 directionToOrigin = (originalPosition - transform.position).normalized;
-            //    transform.position += directionToOrigin * moveSpeed * Time.deltaTime;
 
             //    // Rotate the child to face the start point
             //    Quaternion lookRotation = Quaternion.LookRotation(directionToOrigin);
             //    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
-            //}
+      
             return;
         }
 
@@ -69,17 +63,15 @@ public class ChildScript : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         // Check if the player is within the detection range
-        if (!isChasingPlayer && distanceToPlayer <= detectionRange)
+        if (distanceToPlayer <= detectionRange)
         {
-            //// Move the child towards the player
+            // might need this...
             //Vector3 directionToPlayer = (player.position - transform.position).normalized;
-            //transform.position += directionToPlayer * moveSpeed * Time.deltaTime;
 
             //// Rotate the child to face the player
             //Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
             //transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
 
-            isChasingPlayer = true; // variable to make sure destination only gets set once. 
             agent.destination = player.transform.position;
         }
     }
@@ -88,7 +80,6 @@ public class ChildScript : MonoBehaviour
     public void AttachToPlayer()
     {
         isAttached = true;
-        isChasingPlayer = false;
         PlayAttachmentSound();
     }
 
