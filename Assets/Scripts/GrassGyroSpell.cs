@@ -42,10 +42,10 @@ public class GrassGyroSpell : MonoBehaviour
                 }
 
                 // if we didn't fling the grass, and we're not supposed to hold it anymore, fling the grass.
-                if ((!(timer < holdTime)) && timer < keepAliveTime && !didFling[i])
+                if ((timer > holdTime) && timer < keepAliveTime && !didFling[i])
                 {
                     rb.isKinematic = false;
-                    rb.AddExplosionForce(force, pos - transform.right, explosionRadius);
+                    rb.AddExplosionForce(force, pos + transform.right, explosionRadius);
                 }
 
                 if (timer > keepAliveTime) // if grass expired, kill it.
@@ -66,8 +66,10 @@ public class GrassGyroSpell : MonoBehaviour
     {
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
 
-        grassObjs.Add(other.gameObject);
-        grassTimes.Add(0);
-        didFling.Add(false);
+        if(!grassObjs.Contains(other.gameObject)){
+            grassObjs.Add(other.gameObject);
+            grassTimes.Add(0);
+            didFling.Add(false);
+        }
     }
 }
