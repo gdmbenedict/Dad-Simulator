@@ -30,7 +30,7 @@ public class ActivateText : MonoBehaviour
 
     public TextBoxManager theTextBox;
 
-    public PickupController pickupController;
+    //public PickupController pickupController;
 
     public bool requireButtonPress;
     private bool waitForPress;
@@ -71,30 +71,12 @@ public class ActivateText : MonoBehaviour
         {
             if (!theTextBox.isActive)
             {
-                if (PlayerPrefs.GetInt(pickupController.levelName) >= pickupController.numberOfPickups)
-                {
-                    theTextBox.PlayTalkSound(this);
-                    theTextBox.isActive = true;
-                    theTextBox.ReloadScript(winText);
-                    theTextBox.currentLine = winStartLine;
-                    theTextBox.endAtLine = winEndLine;
-                    theTextBox.EnableTextBox();
-                }
-                else
-                {
-                    theTextBox.PlayTalkSound(this);
-                    theTextBox.isActive = true;
-                    theTextBox.ReloadScript(text);
-                    theTextBox.currentLine = startLine;
-                    theTextBox.endAtLine = endLine;
-                    theTextBox.EnableTextBox();
-                }
-
-            }
-
-            if (destroyWhenActivated)
-            {
-                Destroy(gameObject);
+                //theTextBox.PlayTalkSound(this);
+                theTextBox.isActive = true;
+                theTextBox.ReloadScript(text);
+                theTextBox.currentLine = startLine;
+                theTextBox.endAtLine = endLine;
+                theTextBox.EnableTextBox();
             }
         }
     }
