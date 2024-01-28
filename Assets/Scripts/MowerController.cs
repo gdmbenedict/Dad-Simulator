@@ -14,7 +14,6 @@ public class MowerController : MonoBehaviour
     // Movement backend things
     Vector2 moveValue;
     Rigidbody rb;
-    [SerializeField] bool move = true;
 
     // Player snapping backend
     GameObject player;
@@ -63,10 +62,8 @@ public class MowerController : MonoBehaviour
         moveValue = value.Get<Vector2>();
     }
 
-    void OnDismount(InputValue value) // Unset parent.
+    void OnDismount() // Unset parent.
     {
-        move = Convert.ToBoolean(value.Get<float>());
-
         // Unparent the player and move them.
         player.transform.parent = null;
         player.transform.position += dismountOffset;
