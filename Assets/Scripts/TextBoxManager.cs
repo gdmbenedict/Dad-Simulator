@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class TextBoxManager : MonoBehaviour
 {
@@ -12,26 +12,29 @@ public class TextBoxManager : MonoBehaviour
     public int currentLine;
     public int endAtLine;
 
-    public GameObject winTextObject;
-    public GameObject continueButton;
+    public GameObject choice1;
+    public GameObject choice2;
 
-    public ActivateTextNPCWin NPC;
+    //public GameObject winTextObject;
+    //public GameObject continueButton;
+
+    //public ActivateTextNPCWin NPC;
 
     //public PlayerController player;
     //public PickupController pickupController;
 
-    public AudioSource audioSource;
-    public AudioClip[] captainTalkSounds;
-    public AudioClip[] oldManTalkSounds;
+    //public AudioSource audioSource;
+    //public AudioClip[] captainTalkSounds;
+    //public AudioClip[] oldManTalkSounds;
 
-    public Rigidbody rb;
+    //public Rigidbody rb;
 
     public TextAsset textFile;
     public string[] textLines;
 
     public bool isActive;
 
-    private bool isTyping = false;
+    public bool isTyping = false;
     private bool cancelTyping = false;
 
     public float typeSpeed;
@@ -40,13 +43,15 @@ public class TextBoxManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        choice1.SetActive(false);
+        choice2.SetActive(false);
+
         //player = FindObjectOfType<PlayerController>();
 
         if (textFile != null)
         {
             textLines = (textFile.text.Split('\n'));
         }
-
         if (endAtLine == 0)
         {
             endAtLine = textLines.Length - 1;
@@ -74,7 +79,7 @@ public class TextBoxManager : MonoBehaviour
         //    rb.isKinematic = false;
         //}
 
-        if (Input.GetKeyDown(KeyCode.Return) && textBox.activeSelf) 
+        if (Input.GetKeyDown(KeyCode.Return) && textBox.activeSelf)
         {
             if (!isTyping)
             {
@@ -82,39 +87,22 @@ public class TextBoxManager : MonoBehaviour
 
                 if (currentLine > endAtLine)
                 {
-                        //pickupController.SetBool(pickupController.levelNameCompletedKey, true);
-                        //PlayerPrefs.SetString("lastLevelCompleted", pickupController.levelName);
                         DisableTextBox();
-                        winTextObject.SetActive(true);
-                        continueButton.SetActive(true);
                 }
                 else
                 {
-                    PlayTalkSound(NPC);
+                    //PlayTalkSound(NPC);
                     StartCoroutine(TextScroll(textLines[currentLine]));
                 }
             }
             else if (isTyping && !cancelTyping)
-            { 
+            {
                 cancelTyping = true;
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && isActive)
-        {
-            //pickupController.SetBool(pickupController.levelNameCompletedKey, true);
-            //PlayerPrefs.SetString("lastLevelCompleted", pickupController.levelName);
-            DisableTextBox();
-            winTextObject.SetActive(true);
-            continueButton.SetActive(true);
-            Time.timeScale = 0f;
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            DisableTextBox();
-        }
     }
 
-    private IEnumerator TextScroll (string lineOfText)
+    private IEnumerator TextScroll(string lineOfText)
     {
         int letter = 0;
         theText.text = "";
@@ -127,7 +115,17 @@ public class TextBoxManager : MonoBehaviour
             yield return new WaitForSeconds(typeSpeed);
         }
         theText.text = lineOfText;
-        isTyping = false;
+        //isTyping = false;
+        if (currentLine == endAtLine)
+        {
+            isTyping = true;
+            choice1.SetActive(true);
+            choice2.SetActive(true);
+        }
+        else
+        {
+            isTyping = false;
+        }
         cancelTyping = false;
     }
 
@@ -151,17 +149,17 @@ public class TextBoxManager : MonoBehaviour
         //player.canMove = true;
     }
 
-    public void PlayTalkSound(ActivateTextNPCWin NPC)
-    {
-        if (NPC.gameObject.CompareTag("Captain"))
-        {
-            audioSource.PlayOneShot(captainTalkSounds[Random.Range(0, captainTalkSounds.Length)]);
-        }
-        else if (NPC.gameObject.CompareTag("OldMan"))
-        {
-            audioSource.PlayOneShot(oldManTalkSounds[Random.Range(0, oldManTalkSounds.Length)]);
-        }
-    }
+    //public void PlayTalkSound(ActivateTextNPCWin NPC)
+    //{
+    //    if (NPC.gameObject.CompareTag("Captain"))
+    //    {
+    //        audioSource.PlayOneShot(captainTalkSounds[Random.Range(0, captainTalkSounds.Length)]);
+    //    }
+    //    else if (NPC.gameObject.CompareTag("OldMan"))
+    //    {
+    //        audioSource.PlayOneShot(oldManTalkSounds[Random.Range(0, oldManTalkSounds.Length)]);
+    //    }
+    //}
 
     public void ReloadScript(TextAsset theText)
     {
@@ -172,5 +170,3 @@ public class TextBoxManager : MonoBehaviour
         }
     }
 }
-
-//this text box manager is made by following the tutorial by gamesplusjames on youtube https://www.youtube.com/watch?v=ehmBIP5sj0M

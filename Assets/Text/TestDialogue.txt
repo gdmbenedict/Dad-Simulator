@@ -1,0 +1,8 @@
+Player: (Approaches a friendly gnome in a quaint village square) Hello there! I've heard rumors of an ancient treasure hidden deep within the forest. Can you provide any guidance on my quest?
+Character: (Smiles warmly) Ah, the allure of hidden treasures! I may have a few tidbits of advice, but knowledge comes at a price.
+Player Choice 1: Offer a token of appreciation.
+Player: (Hands over a small pouch of shiny gemstones) These gems are a symbol of my gratitude. Will you share your wisdom with me, kind gnome?
+Character: (Eyes sparkle with delight) Oh, how splendid! Your generosity is noted. I shall happily offer some guidance.
+Player Choice 2: Share a friendly chat.
+Player: (Engages in friendly conversation) Before we talk treasure, how about we share stories and a mug of ale at the local inn? I'd love to hear about your adventures too.
+Character: (Chuckling) A friendly chat, you say? Well, I do love a good story. Let's have that chat, and then we can discuss your quest.

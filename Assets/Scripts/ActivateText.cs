@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class ActivateText : MonoBehaviour
 {
-    public GameObject buttonPrompt;
+    //public GameObject buttonPrompt;
 
     public TextAsset text;
     [SerializeField] private TextAsset theText;
@@ -14,8 +14,8 @@ public class ActivateText : MonoBehaviour
 
     public int startLine;
     public int endLine;
-    public int winStartLine;
-    public int winEndLine;
+    //public int winStartLine;
+    //public int winEndLine;
     public int theTextStartLine;
     public int theTextEndLine;
 
@@ -40,7 +40,7 @@ public class ActivateText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        buttonPrompt.SetActive(false);
+        //buttonPrompt.SetActive(false);
         theTextBox = FindObjectOfType<TextBoxManager>();
 
         if (text != null)
@@ -58,10 +58,10 @@ public class ActivateText : MonoBehaviour
             winTextLines = (winText.text.Split('\n'));
         }
 
-        if (winEndLine == 0)
-        {
-            winEndLine = winTextLines.Length - 1;
-        }
+        //if (winEndLine == 0)
+        //{
+        //    winEndLine = winTextLines.Length - 1;
+        //}
     }
 
     // Update is called once per frame
@@ -85,7 +85,7 @@ public class ActivateText : MonoBehaviour
     {
         if (other.name == "OrboExpo2")
         {
-            buttonPrompt.SetActive(!theTextBox.isActive);
+            //buttonPrompt.SetActive(!theTextBox.isActive);
             if (requireButtonPress)
             {
                 waitForPress = true;
@@ -110,7 +110,7 @@ public class ActivateText : MonoBehaviour
     {
         if (other.name == "OrboExpo2")
         {
-            buttonPrompt.SetActive(false);
+            //buttonPrompt.SetActive(false);
             waitForPress = false;
         }
     }
