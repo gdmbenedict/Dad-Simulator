@@ -350,6 +350,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: textBoxButton1
       objectReference: {fileID: 0}
+    - target: {fileID: 5195157421815247400, guid: 5a442106e6c22e740ad362a21cb6ba39,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2eb511c855914764d97255e280dc8ddb,
+        type: 3}
     - target: {fileID: 5772829896156634381, guid: 5a442106e6c22e740ad362a21cb6ba39,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -364,6 +370,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: ActivateText, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6218361077474127347, guid: 5a442106e6c22e740ad362a21cb6ba39,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6218361077474127347, guid: 5a442106e6c22e740ad362a21cb6ba39,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6218361077474127347, guid: 5a442106e6c22e740ad362a21cb6ba39,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6218361077474127347, guid: 5a442106e6c22e740ad362a21cb6ba39,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -531,6 +557,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 40250164}
     m_Modifications:
+    - target: {fileID: 7587011353562437970, guid: bb8f88c27f65a604abf3c43bef4f8a76,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2eb511c855914764d97255e280dc8ddb,
+        type: 3}
     - target: {fileID: 7804060103991248764, guid: bb8f88c27f65a604abf3c43bef4f8a76,
         type: 3}
       propertyPath: m_Pivot.x
@@ -650,6 +682,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: textBoxButton2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9155556009553080014, guid: bb8f88c27f65a604abf3c43bef4f8a76,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9155556009553080014, guid: bb8f88c27f65a604abf3c43bef4f8a76,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9155556009553080014, guid: bb8f88c27f65a604abf3c43bef4f8a76,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9155556009553080014, guid: bb8f88c27f65a604abf3c43bef4f8a76,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
