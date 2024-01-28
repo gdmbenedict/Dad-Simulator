@@ -15,7 +15,7 @@ public class ChildScript : MonoBehaviour
     private bool isAttached = false; // Tracks whether the child is attached to the player
     public bool isRunningAway = false; // checks if the child has been shaken off
     private Vector3 originalPosition;
-    public float stopThreshold = 0.1f; // Threshold distance to stop moving and rotating
+    public float stopThreshold = 0.1f; // Threshold distance to stop moving towards original position
 
     // Sound
     public AudioClip attachmentSound; // The sound clip to play when attached

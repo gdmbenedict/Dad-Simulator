@@ -9,6 +9,9 @@ TagManager:
   - Laundry
   - GarbageBag
   - Child
+  - Hand
+  - Steak
+  - Stove
   layers:
   - Default
   - TransparentFX
@@ -16,9 +19,9 @@ TagManager:
   - 
   - Water
   - UI
+  - Grass
   - 
-  - 
-  - 
+  - Player
   - 
   - 
   - 

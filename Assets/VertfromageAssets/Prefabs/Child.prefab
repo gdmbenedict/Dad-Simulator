@@ -124,7 +124,7 @@ MonoBehaviour:
   detectionRange: 10
   moveSpeed: 5
   rotationSpeed: 5
-  resetDelay: 5
+  resetDelay: 20
   isRunningAway: 0
   stopThreshold: 0.1
-  attachmentSound: {fileID: 8300000, guid: 6e51496c0cb29b04abf33109fa931933, type: 3}
+  attachmentSound: {fileID: 8300000, guid: ea72ccbc488f0304da98687db33db233, type: 3}
