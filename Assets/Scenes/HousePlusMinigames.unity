@@ -4973,6 +4973,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1984383688}
     m_Modifications:
+    - target: {fileID: 1717818613825477966, guid: c8f66d166322bdf40aa66763be56faec,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717818613825477966, guid: c8f66d166322bdf40aa66763be56faec,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717818613825477966, guid: c8f66d166322bdf40aa66763be56faec,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717818613825477966, guid: c8f66d166322bdf40aa66763be56faec,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2909483672195361515, guid: c8f66d166322bdf40aa66763be56faec,
         type: 3}
       propertyPath: m_Name
@@ -5775,6 +5795,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GarbageBag
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319624910566430111, guid: 05c19c8be6d08cc489d3f124844f4b23,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319624910566430111, guid: 05c19c8be6d08cc489d3f124844f4b23,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319624910566430111, guid: 05c19c8be6d08cc489d3f124844f4b23,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319624910566430111, guid: 05c19c8be6d08cc489d3f124844f4b23,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319624910566430111, guid: 05c19c8be6d08cc489d3f124844f4b23,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -51656,6 +51701,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hamper
       objectReference: {fileID: 0}
+    - target: {fileID: 4288152208891450286, guid: 0e10e36abdec9884c884c147903ef8eb,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4288152208891450286, guid: 0e10e36abdec9884c884c147903ef8eb,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4288152208891450286, guid: 0e10e36abdec9884c884c147903ef8eb,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4288152208891450286, guid: 0e10e36abdec9884c884c147903ef8eb,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4288152208891450286, guid: 0e10e36abdec9884c884c147903ef8eb,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4439631502873129299, guid: 0e10e36abdec9884c884c147903ef8eb,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -53835,6 +53905,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GarbageBag (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319624910566430111, guid: 05c19c8be6d08cc489d3f124844f4b23,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319624910566430111, guid: 05c19c8be6d08cc489d3f124844f4b23,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319624910566430111, guid: 05c19c8be6d08cc489d3f124844f4b23,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319624910566430111, guid: 05c19c8be6d08cc489d3f124844f4b23,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8319624910566430111, guid: 05c19c8be6d08cc489d3f124844f4b23,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -26,12 +26,25 @@ public class HandScript : MonoBehaviour
         if (other != null)
         {
             Debug.Log("Hand Touched " + other.tag);
-            playerScript.handleHandTrigger(other, transform);
+            playerScript.handleHandTriggerEnter(other, transform);
         }
         else
         {
             Debug.Log("Collider is null");
         }
         
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other != null)
+        {
+            Debug.Log("Hand leaving " + other.tag);
+            playerScript.handleHandTriggerExit();
+        }
+        else
+        {
+            Debug.Log("Collider is null");
+        }
     }
 }
