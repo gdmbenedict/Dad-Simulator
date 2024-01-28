@@ -12,7 +12,7 @@ public class PlayerCarry : MonoBehaviour
 
     // Shaking variables
     public int shakeCountRequired = 10; // Number of back-and-forth shakes required
-    public float shakeThreshold = 0.5f; // Minimum movement threshold for a shake
+    public float shakeThreshold = 0.8f; // Minimum movement threshold for a shake
     private int shakeCount = 0;
     private bool isShaking = false;
     private float lastMouseX;
