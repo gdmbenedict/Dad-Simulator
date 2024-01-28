@@ -8,7 +8,7 @@ public class MowerController : MonoBehaviour
     [SerializeField] float moveSpeed = 1; // Move speed in m s -1
     [SerializeField] float rotSpeed = 30; // Rot speed in deg s -1
     [SerializeField] Vector3 dismountOffset = new Vector3(2, 0, 0);
-    [SerializeField] string playerObjName = "You were killed by Shadow Assassin and became a ghost."; // Thats just what was on my clipboard.
+    [SerializeField] string playerObjName = "Player"; // Thats just what was on my clipboard.
 
     // Movement backend things
     Vector2 moveValue;
@@ -25,7 +25,7 @@ public class MowerController : MonoBehaviour
     void Start()
     {
         // Find GameObjects.
-        //player = FindPlayer();
+        FindPlayer();
         playerAnchor = GameObject.Find("PlayerAnchor");
 
         // Get component(s)
@@ -50,17 +50,6 @@ public class MowerController : MonoBehaviour
                 if (moveValue.y < 0) { moveVector *= -0.5f; } // If we want to reverse, allow that, but make it slow.
                 Vector3 movePos = moveVector + transform.position;
                 rb.MovePosition(movePos);
-            }
-
-            if (doSnapping)
-            {
-                // Snap player.
-                SnapPlayer();
-            }
-            else // Use else to unset camera as maincamera.
-            {
-                m_Camera.enabled = false;
-                playerCam.enabled = true;
             }
         }
     }
@@ -90,6 +79,8 @@ public class MowerController : MonoBehaviour
 
         // set player parent to mower.
         player.transform.parent = gameObject.transform;
+        playerCam.enabled = false;
+        m_Camera.enabled = true;
     }
 
     void FindPlayer() // Use to find player, idk how, so do later.
@@ -107,6 +98,10 @@ public class MowerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) // check if player, if true, mount.
     {
-        if(other.gameObject.name == playerObjName) { Mount(); }
+        if(other.gameObject.name == player.name)
+        {
+            Mount();
+        }
+        //Debug.Log(playerObjName); Debug.Log(player.name);
     }
 }

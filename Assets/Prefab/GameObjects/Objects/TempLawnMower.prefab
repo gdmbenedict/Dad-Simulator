@@ -92,7 +92,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487940740699985939}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &2695332969342087266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,6 +452,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   rotSpeed: 30
+  dismountOffset: {x: 2, y: 0, z: 0}
+  playerObjName: Player
   move: 0
 --- !u!114 &7939706198855507065
 MonoBehaviour:
