@@ -75,26 +75,31 @@ public class PlayerCarry : MonoBehaviour
             }
 
             other.GetComponent<ChildScript>().AttachToPlayer();
-            carry(other);
+            carry(other, transform);
             
         }
-        else if (!isCarryingSomething && other.CompareTag(laundryTag))
+        
+    }
+    
+    public void handleHandTrigger(Collider other, Transform where)
+    {
+        if (!isCarryingSomething && other.CompareTag(laundryTag))
         {
-            carry(other);
+            carry(other, where);
         }
         else if (!isCarryingSomething && other.CompareTag(garbageTag))
         {
-            carry(other);
+            carry(other, where);
         }
     }
 
     // Method to carry object
-    private void carry(Collider other)
+    private void carry(Collider other, Transform where)
     {
         originalYPositionObj = other.transform.position.y;
         isCarryingSomething = true;
         // Attach object to the player
-        other.transform.parent = transform;
+        other.transform.parent = where;
         carriedObject = other.gameObject;
 
         // Optionally, you can disable physics to prevent it from continuing to fall or react to other physics events
