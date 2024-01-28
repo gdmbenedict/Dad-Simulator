@@ -8,12 +8,15 @@ public class DropOffScript : MonoBehaviour
     public string acceptedItemTag = "";
     private void OnTriggerEnter(Collider other)
     {
-        PlayerCarry playerScript = other.GetComponent<PlayerCarry>();
-        if (playerScript != null && playerScript.carriedObject != null && playerScript.carriedObject.tag==acceptedItemTag)
+        if (other != null && other.tag=="Hand")
         {
-            Destroy(playerScript.carriedObject, delay);
-            playerScript.carriedObject = null;
-            playerScript.isCarryingSomething = false;
+            PlayerCarry playerScript = other.GetComponent<HandScript>().playerScript;
+            if (playerScript != null && playerScript.carriedObject != null && playerScript.carriedObject.tag == acceptedItemTag)
+            {
+                Destroy(playerScript.carriedObject, delay);
+                playerScript.carriedObject = null;
+                playerScript.isCarryingSomething = false;
+            }
         }
     }
 }

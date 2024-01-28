@@ -30,17 +30,30 @@ public class PlayerCarry : MonoBehaviour
     public Vector3 garbageCarryPos = new Vector3(0.5f, 0.5f, 0.5f);
     public Vector3 childCarryPos = new Vector3(0, 0.5f, 0.5f);
 
+    // Touch and click
+    private Collider touchedObjectCollider = null;
+    private Transform handTransform = null;
+    private bool isTouchingSomething = false;
+
     private float originalYPositionObj;
 
     void Start(){       
 
     }
-    void Update(){
-        if (Input.GetKeyDown(KeyCode.X))
+    void Update()
+    {
+        // Left mouse button click
+        if (Input.GetMouseButtonDown(0))
         {
-            throwObject();
+            if (isCarryingSomething)
+            {
+                throwObject();
+            }else if (isTouchingSomething)
+            {
+                carryTouchedObject();
+            }
         }
-       
+
         // Logic to detatch child with mouse movements
         if (isCarryingSomething && carriedObject.tag==childTag)
         {
@@ -63,6 +76,7 @@ public class PlayerCarry : MonoBehaviour
         }
     }
 
+    // Just manages Child all other objects are handled by hand trigger
     private void OnTriggerEnter(Collider other)
     {
         // If running away child won't reattach
@@ -76,22 +90,35 @@ public class PlayerCarry : MonoBehaviour
 
             other.GetComponent<ChildScript>().AttachToPlayer();
             carry(other, transform);
-            
         }
-        
     }
     
-    public void handleHandTrigger(Collider other, Transform where)
+    // hand trigger handler called from hand script
+    public void handleHandTriggerEnter(Collider other, Transform where) // should pass transform once in start... not going to fix right now though
     {
         Debug.Log("Hand Trigger! " + other.tag);
-        if (!isCarryingSomething && other.CompareTag(laundryTag))
+        if (!isCarryingSomething && (other.CompareTag(laundryTag) || other.CompareTag(garbageTag))) // should covert to list of acceptable tags..
         {
-            carry(other, where);
+            touchedObjectCollider = other;
+            handTransform=where;
+            isTouchingSomething = true;
         }
-        else if (!isCarryingSomething && other.CompareTag(garbageTag))
+    }
+
+    // clear the touched object
+    public void handleHandTriggerExit()
+    {
+        touchedObjectCollider = null;
+        isTouchingSomething = false;
+    }
+
+    // Should check if there is an active touched object and if so pass it to carry
+    public void carryTouchedObject()
+    {
+        if(isTouchingSomething && touchedObjectCollider && handTransform)
         {
-            carry(other, where);
-        }
+            carry(touchedObjectCollider, handTransform);
+        }       
     }
 
     // Method to carry object
@@ -102,6 +129,7 @@ public class PlayerCarry : MonoBehaviour
         // Attach object to the player
         other.transform.parent = where;
         carriedObject = other.gameObject;
+        touchedObjectCollider = null; // Clear last touched object
 
         // Optionally, you can disable physics to prevent it from continuing to fall or react to other physics events
         Rigidbody rb = other.GetComponent<Rigidbody>();
@@ -130,6 +158,7 @@ public class PlayerCarry : MonoBehaviour
             carryPosition = garbageCarryPos;
         }
         other.transform.localPosition = carryPosition;
+
     }
 
 
