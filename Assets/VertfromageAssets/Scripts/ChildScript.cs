@@ -17,12 +17,20 @@ public class ChildScript : MonoBehaviour
     private Vector3 originalPosition;
     public float stopThreshold = 0.1f; // Threshold distance to stop moving towards original position
 
+    // NavMesh
+    public UnityEngine.AI.NavMeshAgent agent;
+
     // Sound
     public AudioClip attachmentSound; // The sound clip to play when attached
     private AudioSource audioSource; // The AudioSource component
     private void Start()
     {
         originalPosition = transform.position; // set original pos
+
+        // set up navMesh
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent.destination = originalPosition;
+
         // Get the AudioSource component attached to this object
         audioSource = GetComponent<AudioSource>();
         // If there's no AudioSource component, add one
@@ -40,19 +48,14 @@ public class ChildScript : MonoBehaviour
         if (isRunningAway)
         {
             Debug.Log("Running away!");
-            // Calculate the distance to the original position
-            float distanceToOrigin = Vector3.Distance(transform.position, originalPosition);
 
-            if (distanceToOrigin > stopThreshold)
-            {
-                // Move the child towards the start point
-                Vector3 directionToOrigin = (originalPosition - transform.position).normalized;
-                transform.position += directionToOrigin * moveSpeed * Time.deltaTime;
+            // Might need this...
+            //    Vector3 directionToOrigin = (originalPosition - transform.position).normalized;
 
-                // Rotate the child to face the start point
-                Quaternion lookRotation = Quaternion.LookRotation(directionToOrigin);
-                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
-            }
+            //    // Rotate the child to face the start point
+            //    Quaternion lookRotation = Quaternion.LookRotation(directionToOrigin);
+            //    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+      
             return;
         }
 
@@ -62,13 +65,14 @@ public class ChildScript : MonoBehaviour
         // Check if the player is within the detection range
         if (distanceToPlayer <= detectionRange)
         {
-            // Move the child towards the player
-            Vector3 directionToPlayer = (player.position - transform.position).normalized;
-            transform.position += directionToPlayer * moveSpeed * Time.deltaTime;
+            // might need this...
+            //Vector3 directionToPlayer = (player.position - transform.position).normalized;
 
-            // Rotate the child to face the player
-            Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
-            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+            //// Rotate the child to face the player
+            //Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, rotationSpeed * Time.deltaTime);
+
+            agent.destination = player.transform.position;
         }
     }
 
@@ -83,6 +87,7 @@ public class ChildScript : MonoBehaviour
     {
         isAttached = false;
         isRunningAway = true;
+        agent.destination = originalPosition;
         StopAttachmentSound();
         Invoke("resetChild", resetDelay);
     }
