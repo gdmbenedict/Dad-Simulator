@@ -12,6 +12,7 @@ TagManager:
   - Hand
   - Steak
   - Stove
+  - Item
   layers:
   - Default
   - TransparentFX
