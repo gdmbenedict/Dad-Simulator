@@ -26,8 +26,24 @@ public class Grab : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        
+
         if (col.gameObject.CompareTag("Item"))
+        {
+            if (hold && col.transform.tag != "Player")
+            {
+                Rigidbody rb = col.transform.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    FixedJoint fj = transform.gameObject.AddComponent(typeof(FixedJoint)) as FixedJoint;
+                    fj.connectedBody = rb;
+                }
+                else
+                {
+                    FixedJoint fj = transform.gameObject.AddComponent(typeof(FixedJoint)) as FixedJoint;
+                }
+            }
+        }
+        else if (col.gameObject.CompareTag("Steak"))
         {
             if (hold && col.transform.tag != "Player")
             {
