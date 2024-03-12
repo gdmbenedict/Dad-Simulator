@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class Grab : MonoBehaviour
+public class GrabOther : MonoBehaviour
 {
     private bool hold;
     public KeyCode grabKey;
