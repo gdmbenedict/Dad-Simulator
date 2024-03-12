@@ -27,13 +27,13 @@ public class MoveArm : MonoBehaviour
         float armPos = gameObject.transform.localPosition.z;
 
         //checking bounds
-        if (armPos + armChange >= 2f)
+        if (armPos + armChange >= maxDist)
         {
-            armChange = 2f - armPos;
+            armChange = maxDist - armPos;
         }
-        else if (armPos + armChange <= 0f)
+        else if (armPos + armChange <= minDist)
         {
-            armChange = 0f - armPos;
+            armChange = minDist - armPos;
         }
 
         //applying change in arm position
