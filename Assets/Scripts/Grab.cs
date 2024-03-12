@@ -61,6 +61,7 @@ public class Grab : MonoBehaviour
         }
     }
 
+    // Handles the logic for grabbing 
     private void GrabObject(GameObject grabObj)
     {
         if (heldObject == null)
@@ -81,6 +82,7 @@ public class Grab : MonoBehaviour
         }
     }
 
+    // Handles logic for dropping objects
     private void DropObject()
     {
         if (heldObject != null)
@@ -97,6 +99,7 @@ public class Grab : MonoBehaviour
         }
     }
 
+    //moves object into the holding position
     private void MoveObject()
     {
         if (Vector3.Distance(heldObject.transform.position, holdArea.position) > 0.1f)
@@ -106,14 +109,17 @@ public class Grab : MonoBehaviour
         }
     }
 
+    //Handles throwing the object
     private void throwObject()
     {
         if (heldObject != null)
         {
             Debug.Log("throwing object");
 
+            //calculating force direction
             Vector3 ForceDirection = GetComponentInParent<Camera>().transform.forward * throwForce + transform.up * throwUpForce;
 
+            //apply foces and drop object
             heldObjRB.AddForce(ForceDirection, ForceMode.Impulse);
             DropObject();
 
