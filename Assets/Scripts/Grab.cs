@@ -16,6 +16,8 @@ public class Grab : MonoBehaviour
     [Header("Grabbed Object Physics")]
     [SerializeField] private float drag = 10f;
     [SerializeField] private float grabForce = 150.0f;
+    [SerializeField] private float throwForce = 20.0f;
+    [SerializeField] private float throwUpForce = 2.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -28,17 +30,17 @@ public class Grab : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Grab initiated");
+           // Debug.Log("Grab initiated");
 
             //check grab area for colliders
             Collider[] interactables = Physics.OverlapSphere(holdArea.position, grabRadius);
             foreach (Collider interactable in interactables)
             {
-                Debug.Log("Checking for interactables");
+                //Debug.Log("Checking for interactables");
                 //check if item is a tag that can be picked up
                 if (tags.Contains(interactable.tag))
                 {
-                    Debug.Log("grabbing object");
+                    //Debug.Log("grabbing object");
                     GrabObject(interactable.gameObject);
                 }
             }
@@ -51,6 +53,11 @@ public class Grab : MonoBehaviour
         if (heldObject != null)
         {
             MoveObject();
+        }
+
+        if (Input.GetMouseButtonDown(1) && heldObject != null)
+        {
+            throwObject();
         }
     }
 
@@ -96,6 +103,20 @@ public class Grab : MonoBehaviour
         {
             Vector3 moveDirection = (holdArea.position - heldObject.transform.position);
             heldObjRB.AddForce(moveDirection * grabForce);
+        }
+    }
+
+    private void throwObject()
+    {
+        if (heldObject != null)
+        {
+            Debug.Log("throwing object");
+
+            Vector3 ForceDirection = GetComponentInParent<Camera>().transform.forward * throwForce + transform.up * throwUpForce;
+
+            heldObjRB.AddForce(ForceDirection, ForceMode.Impulse);
+            DropObject();
+
         }
     }
 }
