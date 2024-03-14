@@ -427,7 +427,7 @@ MonoBehaviour:
   player: {fileID: 1487716122}
   seat: {fileID: 1551317361}
   rb: {fileID: 123859106}
-  speed: 20
+  speed: 2
 --- !u!54 &123859106
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -452,7 +452,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 2
+  m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 1
 --- !u!4 &123859107
@@ -885,7 +885,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -13593,12 +13593,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6810882703650969253, guid: d5486a401ba53114199ce2b218579a3c,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7401159095430960992, guid: d5486a401ba53114199ce2b218579a3c,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.375
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6810882703650969253, guid: d5486a401ba53114199ce2b218579a3c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

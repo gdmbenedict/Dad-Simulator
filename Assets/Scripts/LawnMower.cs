@@ -29,15 +29,6 @@ public class LawnMower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isMounted)
-        {
-            player.transform.SetParent(gameObject.transform);
-        }
-        else
-        {
-            player.transform.SetParent(null);
-        }
-
 
         if (isMounted && Input.GetMouseButton(0))
         {
@@ -45,9 +36,7 @@ public class LawnMower : MonoBehaviour
             isMoving = true;
 
             //roatate
-            Vector3 newPosition = (transform.position) + (transform.right * speed * Time.deltaTime);
-            Debug.Log("Moving being called");
-            rb.MovePosition(newPosition);
+            
 
             //move player
 
@@ -62,7 +51,13 @@ public class LawnMower : MonoBehaviour
     {
         if (isMoving)
         {
-            
+            Vector3 relativeposition = player.transform.InverseTransformPoint(transform.position);
+
+            Vector3 newPosition = (transform.position) + (transform.right * speed) * Time.deltaTime;
+            Debug.Log("Moving being called");
+            rb.MovePosition(newPosition);
+
+            player.transform.position += relativeposition;
         }
     }
 
