@@ -13,6 +13,7 @@ public class MountTrigger : MonoBehaviour
     {
         //updates the bool of the lawn mower to see if the player is mounted
         lawnMower.SetMounted(isMounted);
+
     }
 
     //sets isMounted to true if player gets in area
